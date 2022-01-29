@@ -14,6 +14,11 @@ config/name="Silent Return"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1600
+window/size/height=900
+
 [layer_names]
 
 2d_physics/layer_1="World"

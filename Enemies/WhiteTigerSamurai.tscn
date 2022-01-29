@@ -21,6 +21,9 @@ radius = 200.808
 
 [node name="WhiteTigerSamurai" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+min_speed = 85
+max_speed = 150
+ACCELERATION = 30
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
