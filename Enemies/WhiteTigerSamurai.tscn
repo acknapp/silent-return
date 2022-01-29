@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Enemies/EnemyTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/WhiteTigerSamurai.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28.5026, 28.9492 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30.0009, 31.9458 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 27.0043, 27.4509 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 27.7534, 30.4475 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 200.808
+
+[node name="WhiteTigerSamurai" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource( 5 )
+
+[editable path="Hurtbox"]
+[editable path="HitBox"]
+[editable path="SoftCollision"]
+[editable path="PlayerDetectionZone"]

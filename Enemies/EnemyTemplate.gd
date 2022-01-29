@@ -70,6 +70,10 @@ func _physics_process(delta):
 				accelerate_towards_point(player.global_position, delta)
 			else:
 				state = IDLE
+			
+	if softCollision.is_colliding():
+		velocity += softCollision.get_push_vector() * delta * 400
+	velocity = move_and_slide(velocity)
 
 
 func get_facing_direction(vec_to_location):

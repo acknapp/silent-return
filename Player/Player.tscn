@@ -1,12 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/entities/player/player_ninja.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 43.4861
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource( 2 )
 
 [node name="WorldCollisionShape2D" type="CollisionShape2D" parent="."]
