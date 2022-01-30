@@ -78,11 +78,14 @@ func choose_disguise():
 	# TODO: figure out how to make the game wait for a player to press the button
 	if Input.is_action_pressed("disguise_dragon"):
 		disguise = greyDragon
+		hide_player()
 		emit_signal("disguise_decision_made")
 	elif Input.is_action_pressed("disguise_tiger"):
+		hide_player()
 		disguise = whiteTiger
 		emit_signal("disguise_decision_made")
 	elif Input.is_action_pressed("ui_accept"):
+		reveal_player()
 		disguise = ninja
 		emit_signal("disguise_decision_made")
 
@@ -91,6 +94,14 @@ func hide_disguises():
 	var all_disguises = [whiteTiger, greyDragon, ninja]
 	for disguise in all_disguises:
 		disguise.visible = false
+
+func hide_player():
+	# TODO: make it so that the enemy clan still is alerted to player
+	set_collision_layer_bit(1, false)
+	# set_collision_mask_bit(1, false)
+
+func reveal_player():
+	set_collision_layer_bit(1, true)
 
 
 func die():
