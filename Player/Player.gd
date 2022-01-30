@@ -40,6 +40,7 @@ func _ready():
 	# TODO: signal connection not yet working. Find a way to indicate that the player has stolen an artifact
 	connect("stolen", self, "stolen_artifact") 
 
+
 func _physics_process(delta):
 	match state:
 		MOVE:
@@ -53,9 +54,14 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
-		animationTree.set("parameters/NinjaIdle/blend_position", input_vector)
-		animationTree.set("parameters/NinjaWalk/blend_position", input_vector)
-		animationState.travel("NinjaWalk")
+		if disguise == whiteTiger:
+			animationTree.set("parameters/WhiteTigerIdle/blend_position", input_vector)
+			animationTree.set("parameters/WhiteTigerWalk/blend_position", input_vector)
+			animationState.travel("WhiteTigerWalk")
+		else:
+			animationTree.set("parameters/NinjaIdle/blend_position", input_vector)
+			animationTree.set("parameters/NinjaWalk/blend_position", input_vector)
+			animationState.travel("NinjaWalk")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
 		animationState.travel("NinjaIdle")

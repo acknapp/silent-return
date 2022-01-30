@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/entities/player/animations/ninja-walk.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/entities/player/animations/ninja-tiger-ashigaru-walk.png" type="Texture" id=3]
 [ext_resource path="res://assets/entities/player/animations/ninja-dragon-samurai-walk-forward.png" type="Texture" id=4]
-[ext_resource path="res://assets/entities/player/player tiger samurai.png" type="Texture" id=5]
 [ext_resource path="res://Util/Stats.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -150,6 +150,143 @@ tracks/0/keys = {
 "values": [ 12, 13, 14, 15 ]
 }
 
+[sub_resource type="Animation" id=29]
+resource_name = "WhiteTigerIdleDown"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "WhiteTigerIdleLeft"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "WhiteTigerIdleRight"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "WhiteTigerIdleUp"
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "WhiteTigerWalkDown"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "WhiteTigerWalkLeft"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "WhiteTigerWalkRight"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "WhiteTigerWalkUp"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/WhiteTiger:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "NinjaIdleLeft"
 
@@ -198,11 +335,63 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "WhiteTigerIdleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "WhiteTigerIdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "WhiteTigerIdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "WhiteTigerIdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=41]
+blend_point_0/node = SubResource( 37 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 38 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 39 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 40 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=43]
+animation = "WhiteTigerWalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=44]
+animation = "WhiteTigerWalkDown"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "WhiteTigerWalkRight"
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "WhiteTigerWalkUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=42]
+blend_point_0/node = SubResource( 43 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 44 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 45 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 46 )
+blend_point_3/pos = Vector2( 0, -1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
 [sub_resource type="AnimationNodeStateMachine" id=5]
 states/NinjaIdle/node = SubResource( 18 )
 states/NinjaIdle/position = Vector2( 310, 66 )
 states/NinjaWalk/node = SubResource( 28 )
 states/NinjaWalk/position = Vector2( 568, 66 )
+states/WhiteTigerIdle/node = SubResource( 41 )
+states/WhiteTigerIdle/position = Vector2( 310, 151 )
+states/WhiteTigerWalk/node = SubResource( 42 )
+states/WhiteTigerWalk/position = Vector2( 568, 151 )
 start_node = "NinjaIdle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
@@ -228,7 +417,10 @@ frame = 4
 
 [node name="WhiteTiger" type="Sprite" parent="Sprites"]
 visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
+hframes = 4
+vframes = 4
+frame = 6
 
 [node name="GreyDragon" type="Sprite" parent="Sprites"]
 visible = false
@@ -255,6 +447,14 @@ anims/NinjaWalkDown = SubResource( 3 )
 anims/NinjaWalkLeft = SubResource( 8 )
 anims/NinjaWalkRight = SubResource( 12 )
 anims/NinjaWalkUp = SubResource( 13 )
+anims/WhiteTigerIdleDown = SubResource( 29 )
+anims/WhiteTigerIdleLeft = SubResource( 32 )
+anims/WhiteTigerIdleRight = SubResource( 33 )
+anims/WhiteTigerIdleUp = SubResource( 35 )
+anims/WhiteTigerWalkDown = SubResource( 30 )
+anims/WhiteTigerWalkLeft = SubResource( 31 )
+anims/WhiteTigerWalkRight = SubResource( 34 )
+anims/WhiteTigerWalkUp = SubResource( 36 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 5 )
@@ -263,6 +463,8 @@ active = true
 parameters/playback = SubResource( 6 )
 parameters/NinjaIdle/blend_position = Vector2( 0, 0 )
 parameters/NinjaWalk/blend_position = Vector2( 0, 0 )
+parameters/WhiteTigerIdle/blend_position = Vector2( 0, 0 )
+parameters/WhiteTigerWalk/blend_position = Vector2( 0, 0 )
 
 [node name="Health" parent="." instance=ExtResource( 6 )]
 
