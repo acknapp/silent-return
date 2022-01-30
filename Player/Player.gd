@@ -58,6 +58,10 @@ func move_state(delta):
 			animationTree.set("parameters/WhiteTigerIdle/blend_position", input_vector)
 			animationTree.set("parameters/WhiteTigerWalk/blend_position", input_vector)
 			animationState.travel("WhiteTigerWalk")
+		elif disguise == greyDragon:
+			animationTree.set("parameters/GreyDragonIdle/blend_position", input_vector)
+			animationTree.set("parameters/GreyDragonWalk/blend_position", input_vector)
+			animationState.travel("GreyDragonWalk")
 		else:
 			animationTree.set("parameters/NinjaIdle/blend_position", input_vector)
 			animationTree.set("parameters/NinjaWalk/blend_position", input_vector)

@@ -1,9 +1,9 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://assets/entities/player/animations/ninja-walk.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/entities/player/animations/ninja-tiger-ashigaru-walk.png" type="Texture" id=3]
-[ext_resource path="res://assets/entities/player/animations/ninja-dragon-samurai-walk-forward.png" type="Texture" id=4]
+[ext_resource path="res://assets/entities/player/animations/ninja-dragon-ashigaru-walk.png" type="Texture" id=4]
 [ext_resource path="res://Util/Stats.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -13,6 +13,142 @@ height = 30.0
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 28.5026
 height = 54.8322
+
+[sub_resource type="Animation" id=47]
+resource_name = "GreyDragonIdleDown"
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "GreyDragonIdleLeft"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=51]
+resource_name = "GreyDragonIdleRight"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "GreyDragonIdleUp"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "GreyDragonWalkDown"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=50]
+resource_name = "GreyDragonWalkLeft"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "GreyDragonWalkRight"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=54]
+resource_name = "GreyDragonWalkUp"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/GreyDragon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "NinjaIdleDown"
@@ -287,6 +423,52 @@ tracks/0/keys = {
 "values": [ 12, 13, 14, 15 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=63]
+animation = "GreyDragonIdleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=64]
+animation = "GreyDragonIdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id=65]
+animation = "GreyDragonIdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=66]
+animation = "GreyDragonIdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=59]
+blend_point_0/node = SubResource( 63 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 64 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 65 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 66 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=67]
+animation = "GreyDragonWalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=68]
+animation = "GreyDragonWalkDown"
+
+[sub_resource type="AnimationNodeAnimation" id=69]
+animation = "GreyDragonWalkRight"
+
+[sub_resource type="AnimationNodeAnimation" id=70]
+animation = "GreyDragonWalkUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=60]
+blend_point_0/node = SubResource( 67 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 68 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 69 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 70 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "NinjaIdleLeft"
 
@@ -383,7 +565,23 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
 [sub_resource type="AnimationNodeStateMachine" id=5]
+states/GreyDragonIdle/node = SubResource( 59 )
+states/GreyDragonIdle/position = Vector2( 310, 236.672 )
+states/GreyDragonWalk/node = SubResource( 60 )
+states/GreyDragonWalk/position = Vector2( 568, 236.672 )
 states/NinjaIdle/node = SubResource( 18 )
 states/NinjaIdle/position = Vector2( 310, 66 )
 states/NinjaWalk/node = SubResource( 28 )
@@ -392,7 +590,9 @@ states/WhiteTigerIdle/node = SubResource( 41 )
 states/WhiteTigerIdle/position = Vector2( 310, 151 )
 states/WhiteTigerWalk/node = SubResource( 42 )
 states/WhiteTigerWalk/position = Vector2( 568, 151 )
+transitions = [ "NinjaIdle", "NinjaWalk", SubResource( 55 ), "NinjaWalk", "NinjaIdle", SubResource( 56 ), "WhiteTigerIdle", "WhiteTigerWalk", SubResource( 57 ), "WhiteTigerWalk", "WhiteTigerIdle", SubResource( 58 ), "GreyDragonIdle", "GreyDragonWalk", SubResource( 61 ), "GreyDragonWalk", "GreyDragonIdle", SubResource( 62 ) ]
 start_node = "NinjaIdle"
+graph_offset = Vector2( 0, 44.672 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
@@ -420,12 +620,14 @@ visible = false
 texture = ExtResource( 3 )
 hframes = 4
 vframes = 4
-frame = 6
+frame = 12
 
 [node name="GreyDragon" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 4 )
 hframes = 4
+vframes = 4
+frame = 6
 
 [node name="ChangingHitBox" type="Area2D" parent="."]
 visible = false
@@ -439,6 +641,14 @@ wait_time = 2.0
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/GreyDragonIdleDown = SubResource( 47 )
+anims/GreyDragonIdleLeft = SubResource( 49 )
+anims/GreyDragonIdleRight = SubResource( 51 )
+anims/GreyDragonIdleUp = SubResource( 53 )
+anims/GreyDragonWalkDown = SubResource( 48 )
+anims/GreyDragonWalkLeft = SubResource( 50 )
+anims/GreyDragonWalkRight = SubResource( 52 )
+anims/GreyDragonWalkUp = SubResource( 54 )
 anims/NinjaIdleDown = SubResource( 7 )
 anims/NinjaIdleLeft = SubResource( 9 )
 anims/NinjaIdleRight = SubResource( 10 )
@@ -461,6 +671,8 @@ tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 6 )
+parameters/GreyDragonIdle/blend_position = Vector2( 0, 0 )
+parameters/GreyDragonWalk/blend_position = Vector2( 0, 0 )
 parameters/NinjaIdle/blend_position = Vector2( 0, 0 )
 parameters/NinjaWalk/blend_position = Vector2( 0, 0 )
 parameters/WhiteTigerIdle/blend_position = Vector2( 0, 0 )
