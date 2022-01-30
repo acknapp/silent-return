@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://assets/entities/player/animations/ninja-walk-forward.png" type="Texture" id=1]
+[ext_resource path="res://assets/entities/player/animations/ninja-walk.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/entities/player/animations/ninja-dragon-samurai-walk-forward.png" type="Texture" id=4]
 [ext_resource path="res://assets/entities/player/player tiger samurai.png" type="Texture" id=5]
@@ -10,11 +10,75 @@
 radius = 12.0
 height = 30.0
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 28.5026
 height = 54.8322
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
+resource_name = "NinjaIdleDown"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "NinjaIdleLeft"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "NinjaIdleRight"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "NinjaIdleUp"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=3]
 resource_name = "NinjaWalkDown"
 length = 0.8
 loop = true
@@ -32,12 +96,114 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="Animation" id=8]
+resource_name = "NinjaWalkLeft"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "NinjaWalkRight"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "NinjaWalkUp"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "NinjaIdleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "NinjaIdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "NinjaIdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "NinjaIdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=18]
+blend_point_0/node = SubResource( 20 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 21 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 22 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 23 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "NinjaWalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "NinjaWalkDown"
 
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "NinjaWalkRight"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "NinjaWalkUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=28]
+blend_point_0/node = SubResource( 24 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 25 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 26 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 27 )
+blend_point_3/pos = Vector2( 0, -1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
 [sub_resource type="AnimationNodeStateMachine" id=5]
-states/NinjaWalkDown/node = SubResource( 7 )
-states/NinjaWalkDown/position = Vector2( 514, 72 )
+states/NinjaIdle/node = SubResource( 18 )
+states/NinjaIdle/position = Vector2( 310, 66 )
+states/NinjaWalk/node = SubResource( 28 )
+states/NinjaWalk/position = Vector2( 568, 66 )
+start_node = "NinjaIdle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
@@ -57,6 +223,8 @@ shape = SubResource( 1 )
 [node name="Ninja" type="Sprite" parent="Sprites"]
 texture = ExtResource( 1 )
 hframes = 4
+vframes = 4
+frame = 4
 
 [node name="WhiteTiger" type="Sprite" parent="Sprites"]
 visible = false
@@ -76,15 +244,25 @@ collision_mask = 256
 wait_time = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangingHitBox"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/NinjaWalkDown = SubResource( 4 )
+anims/NinjaIdleDown = SubResource( 7 )
+anims/NinjaIdleLeft = SubResource( 9 )
+anims/NinjaIdleRight = SubResource( 10 )
+anims/NinjaIdleUp = SubResource( 11 )
+anims/NinjaWalkDown = SubResource( 3 )
+anims/NinjaWalkLeft = SubResource( 8 )
+anims/NinjaWalkRight = SubResource( 12 )
+anims/NinjaWalkUp = SubResource( 13 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 6 )
+parameters/NinjaIdle/blend_position = Vector2( 0, 0 )
+parameters/NinjaWalk/blend_position = Vector2( 0, 0 )
 
 [node name="Health" parent="." instance=ExtResource( 6 )]
 
