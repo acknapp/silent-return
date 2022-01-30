@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal death
+signal disguise_decision_made
 
 enum {
 	MOVE,
@@ -14,22 +15,28 @@ export var ACCELERATION = 160
 export var MAX_SPEED = 80
 export var FRICTION = 500
 
+onready var whiteTiger = $Sprites/WhiteTiger
+onready var greyDragon = $Sprites/GreyDragon
+onready var ninja = $Sprites/Ninja
+
 # TODO:
 # var stats = PlayerStats
 var velocity = Vector2.ZERO
 var state = MOVE
 var transforming = false
+var disguise = null
 
 
 
 func _ready():
-	pass # Replace with function body.
+	disguise = ninja
 
 
 func _physics_process(delta):
 	match state:
 		MOVE:
 			move_state(delta)
+
 
 
 func move_state(delta):
@@ -48,3 +55,32 @@ func move_state(delta):
 	# TODO: Add steal and transform code here
 
 
+func choose_disguise():
+	# TODO: figure out how to make the game wait for a player to press the button
+	if Input.is_action_pressed("disguise_dragon"):
+		disguise = greyDragon
+		emit_signal("disguise_decision_made")
+	elif Input.is_action_pressed("disguise_tiger"):
+		disguise = whiteTiger
+		emit_signal("disguise_decision_made")
+	elif Input.is_action_pressed("ui_accept"):
+		disguise = ninja
+		emit_signal("disguise_decision_made")
+
+
+func hide_disguises():
+	var all_disguises = [whiteTiger, greyDragon, ninja]
+	for disguise in all_disguises:
+		disguise.visible = false
+
+
+func _on_ChangingHitBox_area_entered(area):
+	hide_disguises()
+	choose_disguise()
+	# yield(choose_disguise(), "disguise_decision_made")
+	$ChangingHitBox/ChangingTimer.start()
+
+
+func _on_ChangingTimer_timeout():
+	disguise.visible = true
+	

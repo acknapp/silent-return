@@ -1,10 +1,49 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/entities/player/player_ninja.png" type="Texture" id=1]
+[ext_resource path="res://assets/entities/player/animations/ninja-walk-forward.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/entities/player/animations/ninja-dragon-samurai-walk-forward.png" type="Texture" id=4]
+[ext_resource path="res://assets/entities/player/player tiger samurai.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 43.4861
+radius = 18.4465
+height = 65.5583
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 16.5161
+height = 64.8679
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 28.5026
+height = 54.8322
+
+[sub_resource type="Animation" id=4]
+resource_name = "NinjaWalkDown"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Ninja:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "NinjaWalkDown"
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/NinjaWalkDown/node = SubResource( 7 )
+states/NinjaWalkDown/position = Vector2( 514, 72 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 3
@@ -15,5 +54,45 @@ ACCELERATION = 200
 [node name="WorldCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprites" type="YSort" parent="."]
+
+[node name="Ninja" type="Sprite" parent="Sprites"]
 texture = ExtResource( 1 )
+hframes = 4
+
+[node name="WhiteTiger" type="Sprite" parent="Sprites"]
+visible = false
+texture = ExtResource( 5 )
+
+[node name="GreyDragon" type="Sprite" parent="Sprites"]
+visible = false
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="ChangingHitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="ChangingTimer" type="Timer" parent="ChangingHitBox"]
+wait_time = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChangingHitBox"]
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/NinjaWalkDown = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 6 )
+
+[connection signal="area_entered" from="ChangingHitBox" to="." method="_on_ChangingHitBox_area_entered"]
+[connection signal="timeout" from="ChangingHitBox/ChangingTimer" to="." method="_on_ChangingTimer_timeout"]
+
+[editable path="Hurtbox"]
