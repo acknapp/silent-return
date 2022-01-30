@@ -7,14 +7,14 @@
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "alert",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -38,6 +38,7 @@ height = 67.306
 radius = 218.324
 
 [node name="GreyDragonSamurai" instance=ExtResource( 1 )]
+collision_layer = 80
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="0"]

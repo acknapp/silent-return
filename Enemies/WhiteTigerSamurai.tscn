@@ -7,28 +7,27 @@
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "alert",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=9]
-radius = 16.2152
-height = 71.6582
+height = 24.0
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 11.5902
 height = 77.3613
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 18.3174
-height = 69.1355
+radius = 34.0
+height = 101.365
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 20.4196
@@ -38,6 +37,7 @@ height = 72.4991
 radius = 200.808
 
 [node name="WhiteTigerSamurai" instance=ExtResource( 1 )]
+collision_layer = 144
 script = ExtResource( 2 )
 min_speed = 85
 max_speed = 150
@@ -48,7 +48,12 @@ frames = SubResource( 10 )
 animation = "idle"
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, 46 )
+rotation = 1.5708
 shape = SubResource( 9 )
+
+[node name="Hurtbox" parent="." index="2"]
+visible = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 8 )
@@ -56,10 +61,14 @@ shape = SubResource( 8 )
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 7 )
 
+[node name="SoftCollision" parent="." index="4"]
+visible = false
+
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource( 6 )
 
 [node name="PlayerDetectionZone" parent="." index="5"]
+visible = false
 collision_mask = 66
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
