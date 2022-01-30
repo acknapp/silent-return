@@ -37,10 +37,16 @@ onready var animationPlayer = $AnimationPlayer
 
 signal subdued
 
+onready var original_position = position
 
 func _ready():
 	state = pick_random_state([IDLE, WANDER])
 
+func reset():
+	position = original_position
+	velocity = Vector2.ZERO
+	knockback = Vector2.ZERO
+	state = pick_random_state([IDLE, WANDER])
 
 func pick_random_state(state_list):
 	state_list.shuffle()
@@ -56,7 +62,7 @@ func _physics_process(delta):
 			animation.play("idle")
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
-			
+
 			if wanderController.get_time_left() == 0:
 				update_wander()
 		WANDER:
@@ -74,11 +80,14 @@ func _physics_process(delta):
 				accelerate_towards_point(player.global_position, delta)
 			else:
 				state = IDLE
-			
+
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
 
+func _on_HitBox_body_entered(body):
+	if body.has_method("hurt"):
+		body.hurt()
 
 func get_facing_direction(vec_to_location):
 	var facing_vec = get_facing_vector(vec_to_location)
@@ -111,7 +120,5 @@ func seek_player():
 	if playerDetectionZone.can_see_player():
 		$Sounds/PlayerDetected.play()
 		state = CHASE
-
-
 
 

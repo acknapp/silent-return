@@ -1,18 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/entities/player/animations/ninja-walk-forward.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/entities/player/animations/ninja-dragon-samurai-walk-forward.png" type="Texture" id=4]
 [ext_resource path="res://assets/entities/player/player tiger samurai.png" type="Texture" id=5]
+[ext_resource path="res://Util/Stats.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 18.4465
-height = 65.5583
-
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 16.5161
-height = 64.8679
+radius = 12.0
+height = 30.0
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 28.5026
@@ -46,12 +42,14 @@ states/NinjaWalkDown/position = Vector2( 514, 72 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 3
+collision_layer = 7
 collision_mask = 9
 script = ExtResource( 2 )
 ACCELERATION = 200
 
 [node name="WorldCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 47 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Sprites" type="YSort" parent="."]
@@ -69,12 +67,8 @@ visible = false
 texture = ExtResource( 4 )
 hframes = 4
 
-[node name="Hurtbox" parent="." instance=ExtResource( 3 )]
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-shape = SubResource( 2 )
-
 [node name="ChangingHitBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 256
 
@@ -92,7 +86,9 @@ tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 6 )
 
+[node name="Health" parent="." instance=ExtResource( 6 )]
+
+[node name="HurtInvincibilityTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="ChangingHitBox" to="." method="_on_ChangingHitBox_area_entered"]
 [connection signal="timeout" from="ChangingHitBox/ChangingTimer" to="." method="_on_ChangingTimer_timeout"]
-
-[editable path="Hurtbox"]

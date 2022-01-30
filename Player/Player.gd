@@ -11,25 +11,28 @@ enum {
 	PLACE
 }
 
-export var ACCELERATION = 160
-export var MAX_SPEED = 80
-export var FRICTION = 500
+export var ACCELERATION = 1
+export var MAX_SPEED = 180
+export var FRICTION = 1500
 
 onready var whiteTiger = $Sprites/WhiteTiger
 onready var greyDragon = $Sprites/GreyDragon
 onready var ninja = $Sprites/Ninja
+onready var stats = $Health
+onready var hurtInvincibilityTimer = $HurtInvincibilityTimer
 
 # TODO:
-# var stats = PlayerStats
 var velocity = Vector2.ZERO
 var state = MOVE
 var transforming = false
 var disguise = null
+var invincible := false
 
-
+signal die()
 
 func _ready():
 	disguise = ninja
+	hurtInvincibilityTimer.connect("timeout", self, "_on_Hurtbox_invincibility_timeout")
 
 
 func _physics_process(delta):
@@ -44,14 +47,14 @@ func move_state(delta):
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
-	
+
 	if input_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	
+
 	velocity = move_and_slide(velocity)
-	
+
 	# TODO: Add steal and transform code here
 
 
@@ -73,6 +76,20 @@ func hide_disguises():
 	for disguise in all_disguises:
 		disguise.visible = false
 
+func hurt():
+	printerr("HURT")
+	# play hurt animation
+	# bounce away?
+	stats.health = stats.health - 1
+	if stats.health <= 0:
+		die()
+		return
+
+	invincible = true
+
+func die():
+	# death animation?
+	emit_signal("die")
 
 func _on_ChangingHitBox_area_entered(area):
 	hide_disguises()
@@ -83,4 +100,6 @@ func _on_ChangingHitBox_area_entered(area):
 
 func _on_ChangingTimer_timeout():
 	disguise.visible = true
-	
+
+func _on_Hurtbox_invincibility_timeout():
+	invincible = false
