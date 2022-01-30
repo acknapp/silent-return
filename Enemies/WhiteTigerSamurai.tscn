@@ -1,20 +1,38 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Enemies/EnemyTemplate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/WhiteTigerSamurai.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://assets/entities/enemies/npc tiger samurai_idle.png" type="Texture" id=3]
+[ext_resource path="res://assets/entities/enemies/npc tiger samurai_alert.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28.5026, 28.9492 )
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "alert",
+"speed": 5.0
+} ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 30.0009, 31.9458 )
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 16.2152
+height = 71.6582
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 27.0043, 27.4509 )
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 11.5902
+height = 77.3613
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 27.7534, 30.4475 )
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 18.3174
+height = 69.1355
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 20.4196
+height = 72.4991
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 200.808
@@ -25,22 +43,27 @@ min_speed = 85
 max_speed = 150
 ACCELERATION = 30
 
-[node name="Sprite" parent="." index="0"]
-texture = ExtResource( 3 )
+[node name="AnimatedSprite" parent="." index="0"]
+frames = SubResource( 10 )
+animation = "idle"
 
 [node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource( 1 )
+shape = SubResource( 9 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 7 )
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
-shape = SubResource( 4 )
+shape = SubResource( 6 )
+
+[node name="PlayerDetectionZone" parent="." index="5"]
+collision_mask = 66
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+position = Vector2( -0.420441, 0 )
 shape = SubResource( 5 )
 
 [editable path="Hurtbox"]

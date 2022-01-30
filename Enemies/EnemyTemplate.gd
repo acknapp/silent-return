@@ -32,6 +32,7 @@ onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
 onready var wanderController = $WanderController
 onready var hurtbox = $Hurtbox
+onready var animation = $AnimatedSprite
 onready var animationPlayer = $AnimationPlayer
 
 signal subdued
@@ -52,12 +53,14 @@ func _physics_process(delta):
 	knockback = move_and_slide(knockback)
 	match state:
 		IDLE:
+			animation.play("idle")
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
 			
 			if wanderController.get_time_left() == 0:
 				update_wander()
 		WANDER:
+			animation.play("idle")
 			seek_player()
 			if wanderController.get_time_left() == 0:
 				update_wander()
@@ -65,6 +68,7 @@ func _physics_process(delta):
 			if global_position.distance_to(wanderController.target_position) <= WANDER_TARGET_RANGE:
 				update_wander()
 		CHASE:
+			animation.play("alert")
 			var player = playerDetectionZone.player
 			if player != null:
 				accelerate_towards_point(player.global_position, delta)

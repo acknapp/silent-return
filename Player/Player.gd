@@ -45,6 +45,6 @@ func move_state(delta):
 	
 	velocity = move_and_slide(velocity)
 	
-	# TODO: Add steam and transform code here
+	# TODO: Add steal and transform code here
 
 

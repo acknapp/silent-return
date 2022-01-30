@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/world/grass5.png" type="Texture" id=3]
+[ext_resource path="res://assets/world/outside/grass-128.png" type="Texture" id=3]
 [ext_resource path="res://Enemies/WhiteTigerSamurai.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/GreyDragonSamurai.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/world/outside/rocks1.png" type="Texture" id=6]
+[ext_resource path="res://World/Rock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/GreyDragonAshigaru.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/world/outside/rocks3.png" type="Texture" id=9]
+[ext_resource path="res://Enemies/WhiteTigerAshigaru.tscn" type="PackedScene" id=10]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 39.0
+height = 29.7329
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 50.0608
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 41.3444
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -23,19 +39,68 @@ __meta__ = {
 position = Vector2( 705.09, 332.58 )
 current = true
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 705.09, 332.58 )
 ACCELERATION = 150
 MAX_SPEED = 300
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
-[node name="WhiteTigerSamurai2" parent="." instance=ExtResource( 4 )]
+[node name="Rock4" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 847.599, 199.48 )
+
+[node name="Sprite" parent="YSort/Rock4" index="0"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" parent="YSort/Rock4" index="1"]
+position = Vector2( 1, 2 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Rock3" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 234.345, 110.873 )
+
+[node name="Sprite" parent="YSort/Rock3" index="0"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" parent="YSort/Rock3" index="1"]
+position = Vector2( -8.81946, 5.03967 )
+shape = SubResource( 2 )
+
+[node name="Rock2" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 536.726, 597.203 )
+
+[node name="CollisionShape2D" parent="YSort/Rock2" index="1"]
+position = Vector2( 5.03969, -13.2292 )
+shape = SubResource( 3 )
+
+[node name="Rock" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 1283.53, 564.857 )
+
+[node name="Sprite" parent="YSort/Rock" index="0"]
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" parent="YSort/Rock" index="1"]
+position = Vector2( 1, 2 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="WhiteTigerSamurai2" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 247.621, 429.329 )
 
-[node name="WhiteTigerSamurai" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1230.49, 243.01 )
+[node name="GreyDragonAshigaru" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 575.576, 96.3258 )
 
-[node name="WhiteTigerSamurai3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 763.274, 736.335 )
+[node name="GreyDragonSamurai2" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 871.882, 594.423 )
+
+[node name="WhiteTigerAshigaru" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1185.66, 153.043 )
+
+[editable path="YSort/Rock4"]
+[editable path="YSort/Rock3"]
+[editable path="YSort/Rock2"]
+[editable path="YSort/Rock"]
