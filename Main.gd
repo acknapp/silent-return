@@ -1,16 +1,29 @@
 extends Node
 
+onready var player := $YSort/Player
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+const starting_positions := {}
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
 
+	_save_initial_positions()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	player.connect("die", self, "_on_player_die")
+
+func _on_player_die():
+	reset_game()
+
+func _save_initial_positions():
+	starting_positions[player] = player.position
+
+	for artifact in get_tree().get_nodes_in_group("artifact"):
+		starting_positions[artifact] = artifact.position
+
+func reset_game():
+	player.position	= starting_positions[player]
+
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.reset()
+
+	for artifact in get_tree().get_nodes_in_group("artifact"):
+		artifact.position = starting_positions[artifact]

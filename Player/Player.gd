@@ -28,7 +28,7 @@ var transforming = false
 var disguise = null
 var invincible := false
 
-
+signal die()
 
 func _ready():
 	disguise = ninja
@@ -81,7 +81,15 @@ func hurt():
 	# play hurt animation
 	# bounce away?
 	stats.health = stats.health - 1
+	if stats.health <= 0:
+		die()
+		return
+
 	invincible = true
+
+func die():
+	# death animation?
+	emit_signal("die")
 
 func _on_ChangingHitBox_area_entered(area):
 	hide_disguises()
