@@ -289,6 +289,9 @@ position = Vector2( 1088, 1584 )
 [node name="WhiteTigerSamurai3" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 1080, 88 )
 
+[node name="WhiteTigerSamurai_TEST" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 957, -458 )
+
 [node name="WhiteTigerSamurai4" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 2056, -368 )
 
