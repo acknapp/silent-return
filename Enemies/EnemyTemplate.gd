@@ -37,9 +37,16 @@ onready var animationPlayer = $AnimationPlayer
 
 signal subdued
 
+onready var original_position = position
+
 func _ready():
 	state = pick_random_state([IDLE, WANDER])
 
+func reset():
+	position = original_position
+	velocity = Vector2.ZERO
+	knockback = Vector2.ZERO
+	state = pick_random_state([IDLE, WANDER])
 
 func pick_random_state(state_list):
 	state_list.shuffle()
