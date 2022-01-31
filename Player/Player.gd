@@ -30,7 +30,7 @@ var state = MOVE
 var transforming = false
 var disguise = null
 var invincible := false
-var artifact_obtained = false
+var artifact_obtained:int = -1 # ArtifactName
 
 signal die()
 
@@ -38,7 +38,7 @@ func _ready():
 	disguise = ninja
 	hurtInvincibilityTimer.connect("timeout", self, "_on_Hurtbox_invincibility_timeout")
 	# TODO: signal connection not yet working. Find a way to indicate that the player has stolen an artifact
-	connect("stolen", self, "stolen_artifact") 
+	connect("stolen", self, "_on_stolen_artifact")
 
 
 func _physics_process(delta):
@@ -52,7 +52,7 @@ func move_state(delta):
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
-	
+
 	if input_vector != Vector2.ZERO:
 		if disguise == whiteTiger:
 			animationTree.set("parameters/WhiteTigerIdle/blend_position", input_vector)
@@ -70,7 +70,7 @@ func move_state(delta):
 	else:
 		animationState.travel("NinjaIdle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	
+
 	velocity = move_and_slide(velocity)
 
 
@@ -132,10 +132,9 @@ func hurt():
 	if stats.health <= 0:
 		die()
 		return
-		
+
 	invincible = true
 
-
-func steal_artifact():
+func _on_stolen_artifact(artifact_name:int): # ArtifactName
 	print("artifact stolen") # DEBUG
-	artifact_obtained = true
+	artifact_obtained = artifact_name

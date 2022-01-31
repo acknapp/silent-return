@@ -4,6 +4,8 @@ onready var player := $YSort/Player
 
 const starting_positions := {}
 
+signal artifact_returned(pedestal_name)
+
 func _ready():
 
 	_save_initial_positions()

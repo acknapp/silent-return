@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const Artifact = preload("res://World/Artifact.gd")
+
 # TODO: knockout effect
 export var min_speed = 50
 export var max_speed = 125
@@ -12,7 +14,8 @@ export var KNOCKBACK = 120 # maybe not needed?
 enum {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	RETURN_TO_BASE,
 } # TODO: add path2d
 
 const FACING = {
@@ -27,6 +30,7 @@ var knockback = Vector2.ZERO
 
 var state = CHASE
 
+onready var main = get_tree().root.get_node("Main")
 onready var stats = $Health
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
@@ -34,6 +38,8 @@ onready var wanderController = $WanderController
 onready var hurtbox = $Hurtbox
 onready var animation = $AnimatedSprite
 onready var animationPlayer = $AnimationPlayer
+onready var return_base_position_2d = $ReturnBasePosition2D
+onready var return_base_position = return_base_position_2d.global_position
 
 signal subdued
 
@@ -41,6 +47,7 @@ onready var original_position = position
 
 func _ready():
 	state = pick_random_state([IDLE, WANDER])
+	main.connect("artifact_returned", self, "_on_artifact_returned")
 
 func reset():
 	position = original_position
@@ -80,6 +87,9 @@ func _physics_process(delta):
 				accelerate_towards_point(player.global_position, delta)
 			else:
 				state = IDLE
+		RETURN_TO_BASE:
+			animation.play("idle")
+			accelerate_towards_point(return_base_position, delta)
 
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
@@ -112,13 +122,21 @@ func accelerate_towards_point(point, delta):
 
 
 func update_wander():
-	state = pick_random_state([IDLE, WANDER])
-	wanderController.start_wander_timer(rand_range(1, 3))
+	if state != RETURN_TO_BASE:
+		state = pick_random_state([IDLE, WANDER])
+		wanderController.start_wander_timer(rand_range(1, 3))
 
 
 func seek_player():
-	if playerDetectionZone.can_see_player():
-		$Sounds/PlayerDetected.play()
-		state = CHASE
+	if state != RETURN_TO_BASE:
+		if playerDetectionZone.can_see_player():
+			$Sounds/PlayerDetected.play()
+			state = CHASE
 
+func _on_artifact_returned(pedestal_name:int):
+	if state != RETURN_TO_BASE:
+		if self.is_in_group("enemy_white_tiger") and pedestal_name == Artifact.ArtifactName.WhiteTiger:
+			state = RETURN_TO_BASE
 
+		if self.is_in_group("enemy_grey_dragon") and pedestal_name == Artifact.ArtifactName.GreyDragon:
+			state = RETURN_TO_BASE

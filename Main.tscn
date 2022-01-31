@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Enemies/WhiteTigerAshigaru.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/world/base/base-walls.png" type="Texture" id=11]
 [ext_resource path="res://World/Artifact.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/entities/Pedestal.png" type="Texture" id=14]
+[ext_resource path="res://World/Pedestal.gd" type="Script" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 0, 64, 0, 64, 64, 64, 64 )
@@ -192,6 +194,12 @@ points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
 } ]
 0/z_index = 0
 
+[sub_resource type="CircleShape2D" id=19]
+radius = 61.0328
+
+[sub_resource type="CircleShape2D" id=20]
+radius = 64.1249
+
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 
@@ -215,14 +223,14 @@ format = 1
 tile_data = PoolIntArray( -393228, 0, 0, -393227, 0, 131073, -393226, 0, 131073, -393225, 0, 1, -393224, 0, 1, -393223, 0, 131073, -393222, 0, 131073, -393221, 0, 131073, -393220, 0, 131073, -393219, 0, 1, -393218, 0, 1, -393217, 0, 1, -458752, 0, 0, -458751, 0, 1, -458750, 0, 1, -458749, 0, 1, -458748, 0, 0, -458745, 0, 0, -458744, 0, 131073, -458743, 0, 131073, -458742, 0, 1, -458741, 0, 0, -458740, 0, 1, -458739, 0, 131073, -458738, 0, 131073, -458737, 0, 131073, -458736, 0, 1, -458735, 0, 1, -458734, 0, 1, -458733, 0, 131073, -458732, 0, 131073, -458731, 0, 1, -458730, 0, 2, -327692, 0, 65538, -393216, 0, 65538, -393205, 0, 65538, -393194, 0, 65538, -262156, 0, 65538, -262145, 0, 0, -327680, 0, 131074, -327669, 0, 131072, -327668, 0, 1, -327667, 0, 2, -327658, 0, 65538, -196620, 0, 65536, -196609, 0, 65538, -262131, 0, 0, -262122, 0, 65538, -131084, 0, 65536, -131073, 0, 0, -196586, 0, 65536, -65548, 0, 65538, -131059, 0, 0, -131050, 0, 65536, -12, 0, 65536, -1, 0, 0, -65525, 0, 0, -65524, 0, 1, -65523, 0, 0, -65522, 0, 1, -65521, 0, 131073, -65520, 0, 0, -65519, 0, 131073, -65518, 0, 0, -65516, 0, 0, -65515, 0, 131073, -65514, 0, 0, 65524, 0, 0, 65525, 0, 131073, 65526, 0, 131073, 65527, 0, 1, 65528, 0, 1, 65529, 0, 2, 65532, 0, 0, 65533, 0, 1, 65534, 0, 131073, 65535, 0, 0, 0, 0, 2, 11, 0, 65536, 16, 0, 65538, 22, 0, 65538, 131060, 0, 65536, 131065, 0, 0, 65536, 0, 65538, 65547, 0, 0, 65552, 0, 65538, 65558, 0, 65536, 196596, 0, 65536, 131072, 0, 0, 131088, 0, 0, 131094, 0, 65536, 262132, 0, 65536, 262137, 0, 0, 262140, 0, 0, 196619, 0, 0, 196630, 0, 65536, 327668, 0, 65536, 327672, 0, 0, 327673, 0, 131074, 327676, 0, 65536, 262144, 0, 0, 262155, 0, 65538, 262160, 0, 0, 262166, 0, 65536, 393204, 0, 65536, 393208, 0, 65536, 393212, 0, 65536, 327680, 0, 65538, 327691, 0, 65538, 327696, 0, 65538, 327702, 0, 65538, 458740, 0, 65536, 458744, 0, 65536, 458748, 0, 65536, 393216, 0, 65538, 393227, 0, 65538, 393232, 0, 65538, 393238, 0, 65538, 524276, 0, 0, 524277, 0, 1, 524278, 0, 1, 524279, 0, 1, 524280, 0, 0, 524281, 0, 0, 524283, 0, 0, 524284, 0, 0, 524285, 0, 1, 524286, 0, 0, 524287, 0, 1, 458752, 0, 131074, 458763, 0, 131072, 458764, 0, 1, 458765, 0, 131073, 458766, 0, 2, 458768, 0, 0, 458769, 0, 0, 458771, 0, 0, 458772, 0, 131073, 458773, 0, 131073, 458774, 0, 0, 589812, 0, 65538, 589822, 0, 65538, 524302, 0, 131072, 524303, 0, 0, 524304, 0, 131074, 524310, 0, 65536, 655348, 0, 65538, 655358, 0, 65538, 589839, 0, 65538, 589843, 0, 0, 589845, 0, 0, 589846, 0, 0, 720884, 0, 0, 720885, 0, 1, 720886, 0, 1, 720887, 0, 2, 720890, 0, 0, 720894, 0, 65538, 655374, 0, 0, 655375, 0, 131074, 655379, 0, 65536, 655382, 0, 65536, 786420, 0, 65538, 786423, 0, 0, 786426, 0, 65536, 786430, 0, 0, 720910, 0, 0, 720915, 0, 65538, 720918, 0, 65538, 851956, 0, 65538, 851962, 0, 65536, 786451, 0, 65536, 786454, 0, 65536, 917492, 0, 65536, 917498, 0, 65538, 917501, 0, 0, 851982, 0, 0, 851987, 0, 65536, 851990, 0, 65538, 983028, 0, 131072, 983029, 0, 131073, 983030, 0, 1, 983031, 0, 1, 983032, 0, 131073, 983033, 0, 131073, 983034, 0, 0, 983035, 0, 131073, 983036, 0, 131073, 983037, 0, 0, 983038, 0, 131073, 983039, 0, 1, 917504, 0, 1, 917505, 0, 131073, 917506, 0, 131073, 917507, 0, 131073, 917508, 0, 0, 917511, 0, 0, 917512, 0, 131073, 917513, 0, 1, 917514, 0, 131073, 917515, 0, 1, 917516, 0, 131073, 917517, 0, 1, 917518, 0, 0, 917519, 0, 1, 917520, 0, 131073, 917521, 0, 1, 917522, 0, 1, 917523, 0, 0, 917524, 0, 1, 917525, 0, 1, 917526, 0, 131074 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 736, -432 )
+position = Vector2( 791, -525 )
 current = true
 zoom = Vector2( 0.75, 0.75 )
 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 736, -432 )
+position = Vector2( 791, -525 )
 ACCELERATION = 150
 MAX_SPEED = 300
 
@@ -232,161 +240,173 @@ remote_path = NodePath("../../../Camera2D")
 [node name="HidingRock" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 480, -568 )
 
-[node name="GreyDragonAshigaru12" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="GreyDragonAshigaru12" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( -888, -184 )
 
-[node name="GreyDragonAshigaru11" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru12"]
+position = Vector2( -133, 25 )
+
+[node name="GreyDragonAshigaru11" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( 536, 360 )
 
-[node name="GreyDragonAshigaru10" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru11"]
+position = Vector2( -685, 16 )
+
+[node name="GreyDragonAshigaru10" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( 416, -16 )
 
-[node name="GreyDragonAshigaru9" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
-position = Vector2( -1056, -512 )
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru10"]
+position = Vector2( -659, -187 )
 
-[node name="GreyDragonAshigaru" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="GreyDragonAshigaru9" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
+position = Vector2( -775, -440 )
+
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru9"]
+position = Vector2( -240, -158 )
+
+[node name="GreyDragonAshigaru" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( 280, 1224 )
 
-[node name="GreyDragonSamurai" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 5 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru"]
+position = Vector2( -716, 88 )
+
+[node name="GreyDragonSamurai" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 5 )]
 position = Vector2( -256, 728 )
 
-[node name="GreyDragonSamurai2" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 5 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonSamurai"]
+position = Vector2( -170, -224 )
+
+[node name="GreyDragonSamurai2" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 5 )]
 position = Vector2( -240, 248 )
 
-[node name="GreyDragonSamurai3" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 5 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonSamurai2"]
+position = Vector2( -645, 142 )
+
+[node name="GreyDragonSamurai3" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 5 )]
 position = Vector2( -464, 1592 )
 
-[node name="GreyDragonAshigaru2" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonSamurai3"]
+position = Vector2( -284, -531 )
+
+[node name="GreyDragonAshigaru2" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( 320, 800 )
 
-[node name="GreyDragonAshigaru3" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru2"]
+position = Vector2( -488, -266 )
+
+[node name="GreyDragonAshigaru3" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( 456, 1576 )
 
-[node name="GreyDragonAshigaru4" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru3"]
+position = Vector2( -861, -107 )
+
+[node name="GreyDragonAshigaru4" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( 576, 1264 )
 
-[node name="GreyDragonAshigaru5" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru4"]
+position = Vector2( -959, 355 )
+
+[node name="GreyDragonAshigaru5" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( -552, -536 )
 
-[node name="GreyDragonAshigaru6" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru5"]
+position = Vector2( -237, -159 )
+
+[node name="GreyDragonAshigaru6" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( -1288, 280 )
 
-[node name="GreyDragonAshigaru7" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru6"]
+position = Vector2( 75, 154 )
+
+[node name="GreyDragonAshigaru7" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( -1168, 1136 )
 
-[node name="GreyDragonAshigaru8" parent="YSort" groups=[
-"enemy",
-"enemy_grey_dragon",
-] instance=ExtResource( 8 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru7"]
+position = Vector2( -97, -31 )
+
+[node name="GreyDragonAshigaru8" parent="YSort" groups=["enemy", "enemy_grey_dragon"] instance=ExtResource( 8 )]
 position = Vector2( -280, 1120 )
 
-[node name="WhiteTigerAshigaru" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 10 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/GreyDragonAshigaru8"]
+position = Vector2( -633, 22 )
+
+[node name="WhiteTigerAshigaru" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 10 )]
 position = Vector2( 1264, 728 )
 
-[node name="WhiteTigerSamurai" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 4 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerAshigaru"]
+position = Vector2( 415, -583 )
+
+[node name="WhiteTigerSamurai" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 4 )]
 position = Vector2( 1032, 1040 )
 
-[node name="WhiteTigerSamurai2" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 4 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerSamurai"]
+position = Vector2( 664, -592 )
+
+[node name="WhiteTigerSamurai2" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 4 )]
 position = Vector2( 1088, 1584 )
 
-[node name="WhiteTigerSamurai3" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 4 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerSamurai2"]
+position = Vector2( 992, 146 )
+
+[node name="WhiteTigerSamurai3" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 4 )]
 position = Vector2( 1080, 88 )
 
-[node name="WhiteTigerSamurai4" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 4 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerSamurai3"]
+position = Vector2( 589, 213 )
+
+[node name="WhiteTigerSamurai4" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 4 )]
 position = Vector2( 2056, -368 )
 
-[node name="WhiteTigerSamurai5" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 4 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerSamurai4"]
+position = Vector2( 376, -285 )
+
+[node name="WhiteTigerSamurai5" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 4 )]
 position = Vector2( 1760, 648 )
 
-[node name="WhiteTigerSamurai6" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 4 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerSamurai5"]
+position = Vector2( 227, -111 )
+
+[node name="WhiteTigerSamurai6" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 4 )]
 position = Vector2( 2184, 1584 )
 
-[node name="WhiteTigerSamurai7" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 4 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerSamurai6"]
+position = Vector2( 129, -401 )
+
+[node name="WhiteTigerSamurai7" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 4 )]
 position = Vector2( 2568, 200 )
 
-[node name="WhiteTigerAshigaru2" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 10 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerSamurai7"]
+position = Vector2( 108, 104 )
+
+[node name="WhiteTigerAshigaru2" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 10 )]
 position = Vector2( 1856, 184 )
 
-[node name="WhiteTigerAshigaru3" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 10 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerAshigaru2"]
+position = Vector2( 436, 152 )
+
+[node name="WhiteTigerAshigaru3" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 10 )]
 position = Vector2( 2488, 656 )
 
-[node name="WhiteTigerAshigaru4" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 10 )]
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerAshigaru3"]
+position = Vector2( 108, -143 )
+
+[node name="WhiteTigerAshigaru4" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 10 )]
 position = Vector2( 2544, -568 )
+
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerAshigaru4"]
+position = Vector2( 131, 51 )
+
+[node name="WhiteTigerAshigaru5" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 10 )]
+position = Vector2( 1496, 1624 )
+
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerAshigaru5"]
+position = Vector2( 565, -121 )
+
+[node name="WhiteTigerAshigaru6" parent="YSort" groups=["enemy", "enemy_white_tiger"] instance=ExtResource( 10 )]
+position = Vector2( 1328, 1320 )
+
+[node name="ReturnBasePosition2D" type="Position2D" parent="YSort/WhiteTigerAshigaru6"]
+position = Vector2( 682, 303 )
 
 [node name="Rock" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 608, -944 )
@@ -415,29 +435,36 @@ position = Vector2( 952, 2032 )
 [node name="Rock9" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 952, 2152 )
 
-[node name="WhiteTigerAshigaru5" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 10 )]
-position = Vector2( 1496, 1624 )
-
-[node name="WhiteTigerAshigaru6" parent="YSort" groups=[
-"enemy",
-"enemy_white_tiger",
-] instance=ExtResource( 10 )]
-position = Vector2( 1328, 1320 )
-
-[node name="DragonArtifact" parent="YSort" groups=[
-"artifact",
-] instance=ExtResource( 12 )]
+[node name="DragonArtifact" parent="YSort" groups=["artifact"] instance=ExtResource( 12 )]
 position = Vector2( -1287, 656 )
+artifact_name = 1
 
-[node name="TigerArtifact" parent="YSort" groups=[
-"artifact",
-] instance=ExtResource( 12 )]
+[node name="DragonPedestal" type="Area2D" parent="YSort"]
+position = Vector2( -1265, -642 )
+collision_mask = 2
+script = ExtResource( 15 )
+artifact_name = null
+
+[node name="Sprite" type="Sprite" parent="YSort/DragonPedestal"]
+texture = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/DragonPedestal"]
+shape = SubResource( 19 )
+
+[node name="TigerArtifact" parent="YSort" groups=["artifact"] instance=ExtResource( 12 )]
 position = Vector2( 2688, 1632 )
+
+[node name="TigerPedestal" type="Area2D" parent="YSort"]
+position = Vector2( 2767, -673 )
+collision_mask = 2
+script = ExtResource( 15 )
+
+[node name="Sprite" type="Sprite" parent="YSort/TigerPedestal"]
+texture = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/TigerPedestal"]
+shape = SubResource( 20 )
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -3.029
-autoplay = true
